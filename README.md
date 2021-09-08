@@ -1,10 +1,10 @@
 # Emergent-Knowledge-Base
 The Knowledge Base for the Blockchain Developer Program - Questions and Answers
 
-##Format
+## Format
 
-###Question:
+### Question:
 Question Goes Here
 
-###Answer:
+### Answer:
 Answer Goes Here
