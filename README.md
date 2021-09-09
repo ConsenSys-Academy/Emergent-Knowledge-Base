@@ -18,7 +18,7 @@ An example of this process found below:
 
 When submitting a question and answer, ensure it ties to the correct section of https://github.com/ConsenSys-Academy/Blockchain-Developer-Bootcamp/
 
-### See the [Questions Template](questions-template.md) for help in pinpointing more specific issues.
+#### See the [Questions Template](questions-template.md) for help in struturing any future questions as well.
 
 ---
 
