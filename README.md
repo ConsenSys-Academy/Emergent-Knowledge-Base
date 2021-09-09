@@ -5,8 +5,6 @@ This knowledge base will grow over time. Contributions are HIGHLY encouraged and
 
 We envision this knowledge base to grow over time. Should you have an answer to a question, please open an issue and discuss it with the team. Pull requests are highly appreciated.
 
-Please see CONTRIBUTING.md for how to make a contribution.
-
 An example of this process found below:
 
 - Fork it (https://github.com/ConsenSys-Academy/Emergent-Knowledge-Base)
