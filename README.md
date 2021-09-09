@@ -9,11 +9,11 @@ Please see CONTRIBUTING.md for how to make a contribution.
 
 An example of this process found below:
 
-Fork it (https://github.com/ConsenSys-Academy/Emergent-Knowledge-Base)
-Create your feature branch (git checkout -b branchName)
-Commit your changes (git commit -m 'Added X input')
-Push to the branch (git push origin branchName)
-Create a new Pull Request
+- Fork it (https://github.com/ConsenSys-Academy/Emergent-Knowledge-Base)
+- Create your feature branch (git checkout -b branchName)
+- Commit your changes (git commit -m 'Added X input')
+- Push to the branch (git push origin branchName)
+- Create a new Pull Request
 
 
 ## Format
