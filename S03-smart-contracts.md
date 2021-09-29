@@ -28,3 +28,20 @@ This encoded data is then submitted by doing
 ms.submitTransaction(ss.address, 0, encoded, {from: accounts[0]})
 ```
 When you now use the destination.call.value(t.value)(t.data) it is effectively going to the SimpleStorage contract, decoding the data, finding set, passes it the value of 5 and changes the value by executing set.  So it is actually calling set. The multisig wallet stores encoded function executions (by means of encoded function signatures and the parameter data) that only once confirmed execute. See https://abi.hashex.org/
+### Question
+When should I use delegateCall()? Also I don't understand why the state of the caller contract changes. Seems very risky to use delegateCall() as one has to be sure about the effects.
+### Answers
+#### Answer 1
+Check this out: https://www.youtube.com/watch?v=oinniLm5gAM. The order of your variables in the contract have to be exact. I can't really see where you would want to have this kind of thing where you call a function in another contract and then use your own variables to store that state. That's like something you would do in C by accident.
+Kind of makes the whole safe and immutable contract code super unsafe. You would be better having a library of pure functions with no state changes. Call them and return the values.
+#### Answer 2
+There are definitely risks involved for sure. What it does give you, is the ability to abstract logic into  another contract (specifically for writing to storage and doing validation logic).
+If lets say you were constructing new ERC721 (NFT) or some other contract, the caller would be paying hefty gas fees for the construction. The delegatecall usage would save gas, and allow you to reuse that code.
+That said, be vigilant on usage as per the link above.
+The size of the contract using delegate calls would be a lot smaller than the called contract.
+#### Answer 3
+Delegate calls are a key part of proxy contracts - which allow smart contracts to be 'upgraded'. Lot of proxy contracts lying around in DeFi: https://blog.openzeppelin.com/proxy-patterns/
+### Question
+If a contract has a Private variable, and there is no public view function or method to call it, is the variable value 100% hidden from users or other smart contracts?
+### Answer
+Nope, it is more a case of contract/code access to set/read vs. humans or bots scanning contract storage or opcode executions: https://hackernoon.com/your-private-solidity-variable-is-not-private-save-it-before-it-becomes-public-52a723f29f5e 
