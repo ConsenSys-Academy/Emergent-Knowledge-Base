@@ -49,3 +49,20 @@ Nope, it is more a case of contract/code access to set/read vs. humans or bots s
 Can anyone explain why in the SimpleStorage example we need to deploy a built in smart contract called Migrations.sol? Seems weird to also require to deploy a boilerplate contract in addition to the contract we want to deploy?
 ### Answer
 Please see here: https://ethereum.stackexchange.com/questions/56411/what-is-the-role-of-migrations-sol-contract-in-truffle-project
+### Question
+How does solidity handle division when the amount is fractional? For example:
+```
+ function devide(address receiver) public payable{
+
+        payable(receiver).transfer(9msg.value/10);
+
+    }
+```
+I understand if msg.value is in wei, so no problem with that, but what if 9msg.value/10 has a fractional part that is smaller than wei? Is it just dismissed? Can I safely do this or will the user get an error?
+### Answer
+It would tend toward zero, best practice would be to use modulo and assign the remainder somewhere..
+https://docs.soliditylang.org/en/develop/types.html?highlight=array#:~:text=a%20failing%20assertion.-,Division,Solidity%2C%20division%20rounds%20towards%20zero.
+### Question
+Anyone know how to downgrade the compiler version in VSCode?  I'm trying to run it at 0.4.10 for the multi-sig exercise and have been attempting to downgrade using the Juan Blanco Solidity extension by right-click "change workspace compiler version: remote" and choosing 0.4.10. Yet I continue to get the same error.
+### Answer
+If you're using Truffle you can specify the compiler version in your config file: https://www.trufflesuite.com/docs/truffle/reference/configuration#solc
