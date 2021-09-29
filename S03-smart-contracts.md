@@ -45,3 +45,7 @@ Delegate calls are a key part of proxy contracts - which allow smart contracts t
 If a contract has a Private variable, and there is no public view function or method to call it, is the variable value 100% hidden from users or other smart contracts?
 ### Answer
 Nope, it is more a case of contract/code access to set/read vs. humans or bots scanning contract storage or opcode executions: https://hackernoon.com/your-private-solidity-variable-is-not-private-save-it-before-it-becomes-public-52a723f29f5e 
+### Question
+Can anyone explain why in the SimpleStorage example we need to deploy a built in smart contract called Migrations.sol? Seems weird to also require to deploy a boilerplate contract in addition to the contract we want to deploy?
+### Answer
+Please see here: https://ethereum.stackexchange.com/questions/56411/what-is-the-role-of-migrations-sol-contract-in-truffle-project
