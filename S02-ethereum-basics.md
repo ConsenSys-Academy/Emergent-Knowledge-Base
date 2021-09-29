@@ -9,3 +9,4 @@ Hello everyone, I have a question regarding how miners mine a new block. When mi
 ### Answer
 Miners pick up and prioritise the most profitable ones they can stick in a block within the short timeframe from the pool of transactions.
 Those processed on an uncle block are not on the longest chain, so they would end up back in the tx pool to be mined elsewhere. 
+Check this out: [Blockchain Transaction Visualizer](https://txstreet.com/v/eth)
