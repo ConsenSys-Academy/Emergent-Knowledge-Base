@@ -66,3 +66,15 @@ https://docs.soliditylang.org/en/develop/types.html?highlight=array#:~:text=a%20
 Anyone know how to downgrade the compiler version in VSCode?  I'm trying to run it at 0.4.10 for the multi-sig exercise and have been attempting to downgrade using the Juan Blanco Solidity extension by right-click "change workspace compiler version: remote" and choosing 0.4.10. Yet I continue to get the same error.
 ### Answer
 If you're using Truffle you can specify the compiler version in your config file: https://www.trufflesuite.com/docs/truffle/reference/configuration#solc
+
+Code example:
+```
+module.exports = {
+	compilers: {
+		solc: {
+			version: "^0.4.10", 
+		}
+	},
+	...
+}
+```
