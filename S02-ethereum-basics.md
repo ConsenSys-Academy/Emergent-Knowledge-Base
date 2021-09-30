@@ -20,3 +20,7 @@ I'm not 100% on this but I believe it's because the baseFee is the programmatic 
 I think you have a point there.
 If you work with the amount of ETH entering (block reward) being less than the amount of ETH being burnt then it is deflationary.
 My understanding is like yours - the tip is non-destructive miner incentive. 
+### Question
+Hello, Is it necessary to install geth and setup a node?
+### Answer
+Not necessarily, but it is good practice. I think the purpose of that lesson is to learn how to do it rather than needing to have your own node.
