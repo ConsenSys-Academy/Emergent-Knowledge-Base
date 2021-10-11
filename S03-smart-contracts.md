@@ -83,3 +83,10 @@ module.exports = {
 if you assign a state variable to another state variable, does it assign a reference or does it copy the data?
 ### Answer
 it copies the data
+
+### Question
+Please why is the second contract is malicous?
+![malicious_contract](https://user-images.githubusercontent.com/54582856/136837204-ad5d33ef-4f62-4942-a846-b1b8c5b07eef.png)
+### Answer
+The function in the malicious contract is the fallback function. So anytime ether is sent to it, the fall back gets called which then calls the withdraw of the vulnerable contract again.
+
