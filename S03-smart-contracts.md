@@ -78,3 +78,8 @@ module.exports = {
 	...
 }
 ```
+
+### Question
+if you assign a state variable to another state variable, does it assign a reference or does it copy the data?
+### Answer
+it copies the data
