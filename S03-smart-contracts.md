@@ -90,3 +90,7 @@ Please why is the second contract is malicous?
 ### Answer
 The function in the malicious contract is the fallback function. So anytime ether is sent to it, the fall back gets called which then calls the withdraw of the vulnerable contract again.
 
+### Question
+if I deploy various contracts in the same file, each of them will have a specified address? or will be there one single address shared by all those contracts?
+### Answer
+Each contract will have a specified address, if you would deploy via remix you would need to deploy each 1 by 1 as well.
