@@ -6,4 +6,4 @@ Exported channels are in HTML format.  Exports are generated using [DiscordChatE
 
 Exports are static, so the content is current as of the last run time.  It needs to be rerun in order to fetch the latest refreshed content.
 
-The tool comes in 2 flavors (CLI and GUI) Initial samples here were generated using the CLI version.  A sample MacOS .sh file is with included for reference
+The tool comes in 2 flavors (CLI and GUI) Initial samples here were generated using the CLI version.  A MacOS .sh file containing channel IDs is included for reference
