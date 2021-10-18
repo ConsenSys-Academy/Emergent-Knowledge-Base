@@ -1,0 +1,2149 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ConsenSys - &#129521;5-defi-n-daos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/697535391594446898/a_f3e470845441ca713388ff23acf994f3.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">ConsenSys</div>
+        <div class="preamble__entry">Bootcamp 2021 / &#129521;5-defi-n-daos</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/587247838832885761/fc393f6af0a9474004ba636d1d6915f1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharonsheah#1408" data-user-id="587247838832885761" style="color: rgb(149,165,166)">sharonsheah</span>
+
+
+        <span class="chatlog__timestamp">09-Sep-21 07:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="885494093726224465" id="message-885494093726224465" title="Message sent: 09-Sep-21 07:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hi <img loading="lazy" class="emoji " alt="👋" title="wave" src="https://twemoji.maxcdn.com/2/svg/1f44b.svg"> I&#39;ve been thinking about DAOs and wanting to build a DAO tool for the final project. I have some questions about payments and how contribution is verified/valued within DAOs. 
+
+1. How does the DAO decide how much contributors/core team members get paid (that&#39;s if they do pay them and it&#39;s not voluntary work)?
+2. How does the DAO verify that contribution is legit? Is it verified by a single member or is it more decentralised where lots of members are involved in peer reviews etc?
+
+Just want to understand the current status of DAOs. I&#39;ve been digging the internet and couldn&#39;t find much about this. Let me know if anyone has any insights on this <img loading="lazy" class="emoji " alt="😄" title="smile" src="https://twemoji.maxcdn.com/2/svg/1f604.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/587247838832885761/fc393f6af0a9474004ba636d1d6915f1.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="sharonsheah#1408" style="color: rgb(149,165,166)">sharonsheah</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885494093726224465&#39;)">
+Hi <img loading="lazy" class="emoji " alt="👋" title="wave" src="https://twemoji.maxcdn.com/2/svg/1f44b.svg"> I&#39;ve been thinking about DAOs and wanting to build a DAO tool for the final project. I have some questions about payments and how contribution is verified/valued within DAOs. 
+
+1. How does the DAO decide how much contributors/core team members get paid (that&#39;s if they do pay them and it&#39;s not voluntary work)?
+2. How does the DAO verify that contribution is legit? Is it verified by a single member or is it more decentralised where lots of members are involved in peer reviews etc?
+
+Just want to understand the current status of DAOs. I&#39;ve been digging the internet and couldn&#39;t find much about this. Let me know if anyone has any insights on this <img loading="lazy" class="emoji " alt="😄" title="smile" src="https://twemoji.maxcdn.com/2/svg/1f604.svg">                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/290363068725067786/927caf742fb4f2635346ec7d71315265.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="iggy_i#1687" data-user-id="290363068725067786" style="color: rgb(149,165,166)">Regina | UTC+10 | AU</span>
+
+
+        <span class="chatlog__timestamp">09-Sep-21 10:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="885529390203686973" id="message-885529390203686973" title="Message sent: 09-Sep-21 10:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It looks like <a href="https://coordinape.com/">https://coordinape.com/</a> is a popular tool for managing dao. This report from backless might be handy for you. <a href="https://docs.google.com/presentation/d/1fLJvPOvibcCUpJ9ES44_cdoX5Hb7LpDaloGWz5FbUEM/edit?usp=drivesdk">https://docs.google.com/presentation/d/1fLJvPOvibcCUpJ9ES44_cdoX5Hb7LpDaloGWz5FbUEM/edit?usp=drivesdk</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://coordinape.com/">
+                                                        <div class="markdown preserve-whitespace">Coordinape</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace">YFI Coordinape</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://docs.google.com/presentation/d/1fLJvPOvibcCUpJ9ES44_cdoX5Hb7LpDaloGWz5FbUEM/edit?usp=drivesdk">
+                                                        <div class="markdown preserve-whitespace">DAOs - The new frontier in Coordination - DRAFT</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace">Ligther Bankless Logo V2 DAOs The New Coordination Frontier Comprehensive Report Curated By ( September 2021 Edition )</div>
+                                            </div>
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="https://images-ext-1.discordapp.net/external/nRsgGtqNdxalL01KmnlqrT_4W2zoFZ_CzUo_Cgl-im0/https/lh5.googleusercontent.com/Sckh5hQifI1522VE-fbTeQUrlf8yho8cTR1ux0qe4KZizdzSOvDpcMzrRrmjCZKJc2-cvn1gDqRSkA%3Dw1200-h630-p">
+                                                <img class="chatlog__embed-thumbnail" src="https://images-ext-1.discordapp.net/external/nRsgGtqNdxalL01KmnlqrT_4W2zoFZ_CzUo_Cgl-im0/https/lh5.googleusercontent.com/Sckh5hQifI1522VE-fbTeQUrlf8yho8cTR1ux0qe4KZizdzSOvDpcMzrRrmjCZKJc2-cvn1gDqRSkA%3Dw1200-h630-p" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/290363068725067786/927caf742fb4f2635346ec7d71315265.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="iggy_i#1687" style="color: rgb(149,165,166)">Regina | UTC+10 | AU</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885529390203686973&#39;)">
+It looks like <a href="https://coordinape.com/">https://coordinape.com/</a> is a popular tool for managing dao. This report from backless might be handy for you. <a href="https://docs.google.com/presentation/d/1fLJvPOvibcCUpJ9ES44_cdoX5Hb7LpDaloGWz5FbUEM/edit?usp=drivesdk">https://docs.google.com/presentation/d/1fLJvPOvibcCUpJ9ES44_cdoX5Hb7LpDaloGWz5FbUEM/edit?usp=drivesdk</a>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/587247838832885761/fc393f6af0a9474004ba636d1d6915f1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharonsheah#1408" data-user-id="587247838832885761" style="color: rgb(149,165,166)">sharonsheah</span>
+
+
+        <span class="chatlog__timestamp">09-Sep-21 06:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="885653810289205298" id="message-885653810289205298" title="Message sent: 09-Sep-21 06:32 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hey thanks for sharing. I’ve seen coordinape. Will look at the report thank you!! <img loading="lazy" class="emoji " alt="😄" title="smile" src="https://twemoji.maxcdn.com/2/svg/1f604.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/587247838832885761/fc393f6af0a9474004ba636d1d6915f1.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="sharonsheah#1408" style="color: rgb(149,165,166)">sharonsheah</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885653810289205298&#39;)">
+Hey thanks for sharing. I’ve seen coordinape. Will look at the report thank you!! <img loading="lazy" class="emoji " alt="😄" title="smile" src="https://twemoji.maxcdn.com/2/svg/1f604.svg">                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/711974385514315847/67003ce9edfec555c21839bcf6c11298.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="cooganb#8742" data-user-id="711974385514315847" style="color: rgb(206,3,240)">Coogan | NO MetaMask DMs</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 12:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="885922072105201784" id="message-885922072105201784" title="Message sent: 10-Sep-21 12:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">We&#39;re talking with the Yearn team to get Coordinape to present! fingers crossed...</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="raised_hands">
+                                <img class="emoji emoji--small" alt="&#128588;" src="https://twemoji.maxcdn.com/2/svg/1f64c.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction" title="muscle">
+                                <img class="emoji emoji--small" alt="&#128170;" src="https://twemoji.maxcdn.com/2/svg/1f4aa.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/711974385514315847/67003ce9edfec555c21839bcf6c11298.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="cooganb#8742" style="color: rgb(206,3,240)">Coogan | NO MetaMask DMs</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885922072105201784&#39;)">
+We&#39;re talking with the Yearn team to get Coordinape to present! fingers crossed...                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/587247838832885761/fc393f6af0a9474004ba636d1d6915f1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharonsheah#1408" data-user-id="587247838832885761" style="color: rgb(149,165,166)">sharonsheah</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 12:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="885924059253186572" id="message-885924059253186572" title="Message sent: 10-Sep-21 12:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">wooo! i hope they come on! <img loading="lazy" class="emoji " alt="🤩" title="star_struck" src="https://twemoji.maxcdn.com/2/svg/1f929.svg"> I really like the way they&#39;re proving participation/contribution and the payment side of things. I&#39;ve been thinking how to simplify or come up with another way so that it&#39;s achievable for final project haha I wrote a thread about some of my thoughts about DAOs and comparing centralised companies/DAOs in terms of measuring work.  <a href="https://twitter.com/sharonsheah/status/1435586719164682246?s=20">https://twitter.com/sharonsheah/status/1435586719164682246?s=20</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(29,161,242,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+                                                    <img class="chatlog__embed-author-icon" src="https://images-ext-2.discordapp.net/external/b7FWYTgoaEQY3PSHAD5Tcd6fTr0CWohMPMd_SU9AeOY/https/pbs.twimg.com/profile_images/1430759775118102531/TCXEueWm_bigger.jpg" alt="Author icon" loading="lazy" onerror="this.style.visibility='hidden'">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://twitter.com/sharonsheah">Sharon&#129412; (@sharonsheah)</a>
+                                                    </span>
+                                            </div>
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace">I&#39;ve been thinking about Decentralised Autonomous Organisations (DAO) tooling and exploring how contributors are rewarded. How do we measure a contributor&#39;s work in a decentralised world?<img loading="lazy" class="emoji " alt="🤔" title="thinking" src="https://twemoji.maxcdn.com/2/svg/1f914.svg">
+
+Here are some of my thoughts<img loading="lazy" class="emoji " alt="👇" title="point_down" src="https://twemoji.maxcdn.com/2/svg/1f447.svg"> I know I still have lots to learn so please be kind <img loading="lazy" class="emoji " alt="🙏" title="pray" src="https://twemoji.maxcdn.com/2/svg/1f64f.svg"></div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                    <div class="chatlog__embed-footer">
+                                            <img class="chatlog__embed-footer-icon" src="https://images-ext-1.discordapp.net/external/bXJWV2Y_F3XSra_kEqIYXAAsI3m1meckfLhYuWzxIfI/https/abs.twimg.com/icons/apple-touch-icon-192x192.png" alt="Footer icon" loading="lazy">
+
+                                        <span class="chatlog__embed-footer-text">
+Twitter
+ • 
+08-Sep-21 08:52 AM                                        </span>
+                                    </div>
+                            </div>
+                        </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="885924501169274950" id="message-885924501169274950" title="Message sent: 10-Sep-21 12:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Also wanted to share Parcel HQ <a href="https://parcel.money/">https://parcel.money/</a>, I really like the mass payouts and recurring payments. Just been interested in treasury management and mass organisation <img loading="lazy" class="emoji " alt="😄" title="smile" src="https://twemoji.maxcdn.com/2/svg/1f604.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="https://twemoji.maxcdn.com/2/svg/1f44d.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/587247838832885761/fc393f6af0a9474004ba636d1d6915f1.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="sharonsheah#1408" style="color: rgb(149,165,166)">sharonsheah</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885924501169274950&#39;)">
+Also wanted to share Parcel HQ <a href="https://parcel.money/">https://parcel.money/</a>, I really like the mass payouts and recurring payments. Just been interested in treasury management and mass organisation <img loading="lazy" class="emoji " alt="😄" title="smile" src="https://twemoji.maxcdn.com/2/svg/1f604.svg">                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/711974385514315847/67003ce9edfec555c21839bcf6c11298.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="cooganb#8742" data-user-id="711974385514315847" style="color: rgb(206,3,240)">Coogan | NO MetaMask DMs</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 12:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="885925667169001482" id="message-885925667169001482" title="Message sent: 10-Sep-21 12:32 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I don&#39;t know about Parcel HQ! Thanks for sharing, I&#39;m also interested in mass organization, social coordination!</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="100">
+                                <img class="emoji emoji--small" alt="&#128175;" src="https://twemoji.maxcdn.com/2/svg/1f4af.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/587247838832885761/fc393f6af0a9474004ba636d1d6915f1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharonsheah#1408" data-user-id="587247838832885761" style="color: rgb(149,165,166)">sharonsheah</span>
+
+
+        <span class="chatlog__timestamp">11-Sep-21 07:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="886390421171863552" id="message-886390421171863552" title="Message sent: 11-Sep-21 07:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Great article covering DAO tooling landscape, challenges to address and the future of DAO tooling <a href="https://ff.mirror.xyz/5DKTQ81NR3u_CyZIPWlAcUMstYyVDEYj6nOyZKx1ZuI">https://ff.mirror.xyz/5DKTQ81NR3u_CyZIPWlAcUMstYyVDEYj6nOyZKx1ZuI</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://ff.mirror.xyz/5DKTQ81NR3u_CyZIPWlAcUMstYyVDEYj6nOyZKx1ZuI">
+                                                        <div class="markdown preserve-whitespace">The Importance of DAO Tooling for Social Cohesion — Mirror</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace">This is a guest post featuring Federico Daffina Minicucci, student at NYU Stern School of Business studying Computer Science and Finance.</div>
+                                            </div>
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="https://images-ext-2.discordapp.net/external/vRtOR_uAdtZVH_B_-0zDnWu98zyPeZDBP1XhguZnO-I/%3Fheight%3D720%26width%3D1280/https/images.mirror-media.xyz/publication-images/9ea90ef8-be22-4d12-822d-0ff79454f5ca.jpeg">
+                                                <img class="chatlog__embed-thumbnail" src="https://images-ext-2.discordapp.net/external/vRtOR_uAdtZVH_B_-0zDnWu98zyPeZDBP1XhguZnO-I/%3Fheight%3D720%26width%3D1280/https/images.mirror-media.xyz/publication-images/9ea90ef8-be22-4d12-822d-0ff79454f5ca.jpeg" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="round_pushpin">
+                                <img class="emoji emoji--small" alt="&#128205;" src="https://twemoji.maxcdn.com/2/svg/1f4cd.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/587247838832885761/fc393f6af0a9474004ba636d1d6915f1.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="sharonsheah#1408" style="color: rgb(149,165,166)">sharonsheah</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;886390421171863552&#39;)">
+Great article covering DAO tooling landscape, challenges to address and the future of DAO tooling <a href="https://ff.mirror.xyz/5DKTQ81NR3u_CyZIPWlAcUMstYyVDEYj6nOyZKx1ZuI">https://ff.mirror.xyz/5DKTQ81NR3u_CyZIPWlAcUMstYyVDEYj6nOyZKx1ZuI</a>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/836613034788257792/2e9c8dc447e0757cc3c2d635d1c6a04f.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="BloxAndEwoks#4311" data-user-id="836613034788257792" style="color: rgb(149,165,166)">BloxAndEwoks</span>
+
+
+        <span class="chatlog__timestamp">12-Sep-21 07:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="886572147487698966" id="message-886572147487698966" title="Message sent: 12-Sep-21 07:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">That’s awesome, I’ve read a handful of disparate articles on this but this ties it all together really well</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="smile">
+                                <img class="emoji emoji--small" alt="&#128516;" src="https://twemoji.maxcdn.com/2/svg/1f604.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/446823062084780034/e4750329b8c7062525309543cba12b53.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="annwillmott#1682" data-user-id="446823062084780034" style="color: rgb(149,165,166)">annwillmott</span>
+
+
+        <span class="chatlog__timestamp">12-Sep-21 10:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="886797368345886720" id="message-886797368345886720" title="Message sent: 12-Sep-21 10:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hey everybody! If you are interested in DAOs, Wyoming Blockchain Stampede is having an awesome DAO Day which will be lived streamed &amp; free. I&#39;ve been working on the speaker list and am excited about who we have...stay tuned! Good opportunity to learn about different use cases, tooling, legal structures, along with DAOs as related to NFTs, gaming, DeFi.  Friday September 24, in person and online!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886797372200460329" id="message-886797372200460329" title="Message sent: 12-Sep-21 10:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://wyohackathon.io/">https://wyohackathon.io/</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://wyohackathon.io/">
+                                                        <div class="markdown preserve-whitespace">WyoHackathon Blockchain Stampede 2021</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace">The WyoHackathon Blockchain Stampede is a celebratory blockchain event for developers, entrepreneurs and established companies.</div>
+                                            </div>
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="https://images-ext-1.discordapp.net/external/U0DicZu-qXDfeNrQBIJiyRmiHLWaLnFNqoAYt1_if3U/https/wyohackathon.io/assets/img/landing_logo.png">
+                                                <img class="chatlog__embed-thumbnail" src="https://images-ext-1.discordapp.net/external/U0DicZu-qXDfeNrQBIJiyRmiHLWaLnFNqoAYt1_if3U/https/wyohackathon.io/assets/img/landing_logo.png" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="round_pushpin">
+                                <img class="emoji emoji--small" alt="&#128205;" src="https://twemoji.maxcdn.com/2/svg/1f4cd.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ndaugreal#3566" data-user-id="424736165816434688" style="color: rgb(149,165,166)">ndaugreal</span>
+
+
+        <span class="chatlog__timestamp">12-Sep-21 11:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="886820661287329834" id="message-886820661287329834" title="Message sent: 12-Sep-21 11:48 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="annwillmott#1682">@annwillmott</span> Very interesting, thanks for the information! Will the sessions be recorded if we cannot watch them live?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/446823062084780034/e4750329b8c7062525309543cba12b53.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="annwillmott#1682" style="color: rgb(149,165,166)">annwillmott</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;886797368345886720&#39;)">
+Hey everybody! If you are interested in DAOs, Wyoming Blockchain Stampede is having an awesome DAO Day which will be lived streamed &amp; free. I&#39;ve been working on the speaker list and am excited about who we have...stay tuned! Good opportunity to learn about different use cases, tooling, legal structures, along with DAOs as related to NFTs, gaming, DeFi.  Friday September 24, in person and online!                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/711974385514315847/67003ce9edfec555c21839bcf6c11298.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="cooganb#8742" data-user-id="711974385514315847" style="color: rgb(206,3,240)">Coogan | NO MetaMask DMs</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 01:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="887031110507327548" id="message-887031110507327548" title="Message sent: 13-Sep-21 01:44 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">This looks awesome! Are you putting this together <span class="mention" title="annwillmott#1682">@annwillmott</span> ??</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/711974385514315847/67003ce9edfec555c21839bcf6c11298.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="cooganb#8742" style="color: rgb(206,3,240)">Coogan | NO MetaMask DMs</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;887031110507327548&#39;)">
+This looks awesome! Are you putting this together <span class="mention" title="annwillmott#1682">@annwillmott</span> ??                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/446823062084780034/e4750329b8c7062525309543cba12b53.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="annwillmott#1682" data-user-id="446823062084780034" style="color: rgb(149,165,166)">annwillmott</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 05:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="887081731818139688" id="message-887081731818139688" title="Message sent: 13-Sep-21 05:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I&#39;m working with Wyoming Blockchain Stampede and John Paller of ETHDenver on it. Really fun project.. I can post when the speaker list is live!</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="https://twemoji.maxcdn.com/2/svg/1f44d.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/446823062084780034/e4750329b8c7062525309543cba12b53.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="annwillmott#1682" style="color: rgb(149,165,166)">annwillmott</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;887081731818139688&#39;)">
+I&#39;m working with Wyoming Blockchain Stampede and John Paller of ETHDenver on it. Really fun project.. I can post when the speaker list is live!                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/711974385514315847/67003ce9edfec555c21839bcf6c11298.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="cooganb#8742" data-user-id="711974385514315847" style="color: rgb(206,3,240)">Coogan | NO MetaMask DMs</span>
+
+
+        <span class="chatlog__timestamp">14-Sep-21 10:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="887337228190236692" id="message-887337228190236692" title="Message sent: 14-Sep-21 10:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Please do! And if you need volunteers / want to let folks know how they can get involved you should post in <span class="mention">#⛑jobs-and-opportunities</span> if you like!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/711974385514315847/67003ce9edfec555c21839bcf6c11298.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="cooganb#8742" data-user-id="711974385514315847" style="color: rgb(206,3,240)">Coogan | NO MetaMask DMs</span>
+
+
+        <span class="chatlog__timestamp">15-Sep-21 01:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="887755334775627827" id="message-887755334775627827" title="Message sent: 15-Sep-21 01:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://medium.com/primedao/exploring-dao2dao-collaboration-mechanisms-c37218a17a21">https://medium.com/primedao/exploring-dao2dao-collaboration-mechanisms-c37218a17a21</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://medium.com/primedao/exploring-dao2dao-collaboration-mechanisms-c37218a17a21">
+                                                        <div class="markdown preserve-whitespace">Exploring DAO2DAO Collaboration Mechanisms</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace">Implementable Tools to Extend DAO Interaction Patterns in D2D Research Phase 2</div>
+                                            </div>
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="https://images-ext-1.discordapp.net/external/vAFZh0x2JSymjVhhYLZVlktfXo9zXRGiLQ-UELtWloI/https/miro.medium.com/max/1024/0%2ApW4nWMDoQz_I82TV.jpg">
+                                                <img class="chatlog__embed-thumbnail" src="https://images-ext-1.discordapp.net/external/vAFZh0x2JSymjVhhYLZVlktfXo9zXRGiLQ-UELtWloI/https/miro.medium.com/max/1024/0%2ApW4nWMDoQz_I82TV.jpg" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="887755515642413166" id="message-887755515642413166" title="Message sent: 15-Sep-21 01:43 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Some really great stuff in the GnosisGuild Discord as well! <a href="https://discord.gg/upfJtYqzMB">https://discord.gg/upfJtYqzMB</a></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204773987325050880/0ec2593e753f7499177793fbeef88953.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nich#3520" data-user-id="204773987325050880" style="color: rgb(149,165,166)">nich</span>
+
+
+        <span class="chatlog__timestamp">15-Sep-21 02:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="887769448365305906" id="message-887769448365305906" title="Message sent: 15-Sep-21 02:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">just published this piece on DAO tooling! maybe will help spark project ideas <img loading="lazy" class="emoji " alt="😉" title="wink" src="https://twemoji.maxcdn.com/2/svg/1f609.svg"> <a href="https://medium.com/1kxnetwork/organization-legos-the-state-of-dao-tooling-866b6879e93e">https://medium.com/1kxnetwork/organization-legos-the-state-of-dao-tooling-866b6879e93e</a></span>
+
+                                <span class="chatlog__edited-timestamp" title="15-Sep-21 02:39 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://medium.com/1kxnetwork/organization-legos-the-state-of-dao-tooling-866b6879e93e">
+                                                        <div class="markdown preserve-whitespace">Organization Legos: The State of DAO Tooling</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace">DAO Operations is a budding crypto vertical that remains underserved. With over 1,000 Snapshot spaces, 700k governance token holders, and…</div>
+                                            </div>
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="https://images-ext-1.discordapp.net/external/gIsfrEnSWtRomsJObRITzH7hz_WvE5eLgK1aiiq8OHc/https/miro.medium.com/max/1200/1%2AxgZUOliVt_sjo4iaBTYoig.png">
+                                                <img class="chatlog__embed-thumbnail" src="https://images-ext-1.discordapp.net/external/gIsfrEnSWtRomsJObRITzH7hz_WvE5eLgK1aiiq8OHc/https/miro.medium.com/max/1200/1%2AxgZUOliVt_sjo4iaBTYoig.png" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="https://twemoji.maxcdn.com/2/svg/1f44d.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction" title="raised_hands">
+                                <img class="emoji emoji--small" alt="&#128588;" src="https://twemoji.maxcdn.com/2/svg/1f64c.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/395359066169278464/6917f8c45099ccc392a0848166d5b661.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mkkiob#6286" data-user-id="395359066169278464" style="color: rgb(149,165,166)">mkkiob</span>
+
+
+        <span class="chatlog__timestamp">18-Sep-21 12:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="888822315008282725" id="message-888822315008282725" title="Message sent: 18-Sep-21 12:22 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">a good article with helpful links to better understand DAO: <a href="https://newsletter.banklesshq.com/p/how-to-join-a-dao">https://newsletter.banklesshq.com/p/how-to-join-a-dao</a></span>
+
+                                <span class="chatlog__edited-timestamp" title="18-Sep-21 12:25 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://newsletter.banklesshq.com/p/how-to-join-a-dao">
+                                                        <div class="markdown preserve-whitespace">How to join a DAO</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace">Your essential guide to starting the DAO journey</div>
+                                            </div>
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="https://images-ext-1.discordapp.net/external/yXRkQFX_JQubSrY1VkPa3avnd2q2GPAcDUhlPuHPBfI/https/cdn.substack.com/image/fetch/w_1200%2Cc_limit%2Cf_jpg%2Cq_auto%3Agood%2Cfl_progressive%3Asteep/https%253A%252F%252Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%252Fpublic%252Fimages%252Fa50a3979-379b-465b-86c1-35d802d1f6a6_851x479.jpeg">
+                                                <img class="chatlog__embed-thumbnail" src="https://images-ext-1.discordapp.net/external/yXRkQFX_JQubSrY1VkPa3avnd2q2GPAcDUhlPuHPBfI/https/cdn.substack.com/image/fetch/w_1200%2Cc_limit%2Cf_jpg%2Cq_auto%3Agood%2Cfl_progressive%3Asteep/https%253A%252F%252Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%252Fpublic%252Fimages%252Fa50a3979-379b-465b-86c1-35d802d1f6a6_851x479.jpeg" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ltomczak#6106" data-user-id="520304878778843142" style="color: rgb(149,165,166)">ltomczak</span>
+
+
+        <span class="chatlog__timestamp">22-Sep-21 02:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="890305467157450792" id="message-890305467157450792" title="Message sent: 22-Sep-21 02:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Thought it was relevant to bring up the SEC&#39;s lawsuit threat to Coinbase, leading them to shelf their &quot;Lend&quot; product. Not sure if this is the right place for this, but curious if you folks think similar threats from the SEC could permeate other areas of DeFi?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="ltomczak#6106" style="color: rgb(149,165,166)">ltomczak</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;890305467157450792&#39;)">
+Thought it was relevant to bring up the SEC&#39;s lawsuit threat to Coinbase, leading them to shelf their &quot;Lend&quot; product. Not sure if this is the right place for this, but curious if you folks think similar threats from the SEC could permeate other areas of DeFi?                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/619249559859888128/0fd9ff19f019632f362409cb01dde6e5.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kyre#5879" data-user-id="619249559859888128" style="color: rgb(149,165,166)">Kyre</span>
+
+
+        <span class="chatlog__timestamp">22-Sep-21 08:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="890393067679547452" id="message-890393067679547452" title="Message sent: 22-Sep-21 08:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I could see the SEC definitely trying to control other areas of DEFI and the larger blockchain space because they are threatened by it. 
+
+overall, I&#39;m optimistic about blockchain and crypto in general because like charles hoskinson recently said, the US will get left behind because other countries are rapidly adopting these technologies</span>
+
+                                <span class="chatlog__edited-timestamp" title="22-Sep-21 08:25 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/395359066169278464/6917f8c45099ccc392a0848166d5b661.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="mkkiob#6286" style="color: rgb(149,165,166)">mkkiob</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;888822315008282725&#39;)">
+a good article with helpful links to better understand DAO: <a href="https://newsletter.banklesshq.com/p/how-to-join-a-dao">https://newsletter.banklesshq.com/p/how-to-join-a-dao</a>                    </span>
+
+                        <span class="chatlog__reference-edited-timestamp" title="18-Sep-21 12:25 PM">(edited)</span>
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/813249220458315786/6d67c59c738f49185f25b9534b467b91.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="cryptom0nk3y#2789" data-user-id="813249220458315786" style="color: rgb(149,165,166)">cryptom0nk3y</span>
+
+
+        <span class="chatlog__timestamp">22-Sep-21 08:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="890394953342136340" id="message-890394953342136340" title="Message sent: 22-Sep-21 08:31 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/880098814122405918/890394949202378832/marketmap-of-institutional-defi.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/880098814122405918/890394949202378832/marketmap-of-institutional-defi.png" alt="Image attachment" title="Image: marketmap-of-institutional-defi.png (482.64 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="https://twemoji.maxcdn.com/2/svg/1f44d.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/395359066169278464/6917f8c45099ccc392a0848166d5b661.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mkkiob#6286" data-user-id="395359066169278464" style="color: rgb(149,165,166)">mkkiob</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="891359889786536017" id="message-891359889786536017" title="Message sent: 25-Sep-21 12:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I&#39;m not on this chapter yet, but a good article about the future of VCs through DAO with some examples <a href="https://www.decentralised.co/the-future-of-venture-capital/">https://www.decentralised.co/the-future-of-venture-capital/</a></span>
+
+                                <span class="chatlog__edited-timestamp" title="25-Sep-21 01:00 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.decentralised.co/the-future-of-venture-capital/">
+                                                        <div class="markdown preserve-whitespace">The Future of Venture Capital Will Be Decentralised</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace">Hey there, Joseph Schumpeter coined the term creative destruction in 1942. Its core idea is that over time, capitalism tends to shift systems towards efficiency. Replacing old, outdated ways of doing things. Web3 and its constant evolution means we can see this occurring in a much shorter period than traditional</div>
+                                            </div>
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="https://images-ext-2.discordapp.net/external/2ENoEe0SpdmizbKrKfd44Bq7ieRxdprHNlldQDFlQBs/https/www.decentralised.co/content/images/2021/09/Screenshot-2021-09-16-at-11.27.27-PM.png">
+                                                <img class="chatlog__embed-thumbnail" src="https://images-ext-2.discordapp.net/external/2ENoEe0SpdmizbKrKfd44Bq7ieRxdprHNlldQDFlQBs/https/www.decentralised.co/content/images/2021/09/Screenshot-2021-09-16-at-11.27.27-PM.png" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="https://twemoji.maxcdn.com/2/svg/1f44d.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/797466626588672010/79fa41cae7c4f524552a009b1bdd8e6d.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Layla Abdulla#1267" data-user-id="797466626588672010" style="color: rgb(149,165,166)">Layla Abdulla</span>
+
+
+        <span class="chatlog__timestamp">04-Oct-21 10:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="894590248577794080" id="message-894590248577794080" title="Message sent: 04-Oct-21 10:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">i like how they visual ERC721 and ERC1155</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/880098814122405918/894590246585507950/unknown.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/880098814122405918/894590246585507950/unknown.png" alt="Image attachment" title="Image: unknown.png (614.88 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="https://twemoji.maxcdn.com/2/svg/1f44d.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="894590335139864586" id="message-894590335139864586" title="Message sent: 04-Oct-21 10:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://academy.ivanontech.com/blog/non-fungible-tokens-explaining-nfts-erc-721-and-erc-1155">https://academy.ivanontech.com/blog/non-fungible-tokens-explaining-nfts-erc-721-and-erc-1155</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://academy.ivanontech.com/blog/non-fungible-tokens-explaining-nfts-erc-721-and-erc-1155">
+                                                        <div class="markdown preserve-whitespace">Non-Fungible Tokens - Explaining NFTs, ERC-721 and ERC-1155 &#187; Ivan ...</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace">Non-fungible tokens (NFTs) are famously gaining popularity in the gaming and collectible space, and is one of the latest booming areas of the crypto industry. However, the use cases for NFTs stretch far beyond gaming and collectibles. In fact, developers are creating entire virtual worlds using NFTs, and we are still very much in the early stage...</div>
+                                            </div>
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="https://images-ext-1.discordapp.net/external/hVCAR0evQvH7VA2rNbyu4x3NWkSY0jE7dsBIH_mKBJU/https/beta.ivanontech.com/wp-content/uploads/2021/06/NFT_ERC-721_ERC-1155.jpg">
+                                                <img class="chatlog__embed-thumbnail" src="https://images-ext-1.discordapp.net/external/hVCAR0evQvH7VA2rNbyu4x3NWkSY0jE7dsBIH_mKBJU/https/beta.ivanontech.com/wp-content/uploads/2021/06/NFT_ERC-721_ERC-1155.jpg" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="raised_hands">
+                                <img class="emoji emoji--small" alt="&#128588;" src="https://twemoji.maxcdn.com/2/svg/1f64c.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/797466626588672010/79fa41cae7c4f524552a009b1bdd8e6d.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Layla Abdulla#1267" style="color: rgb(149,165,166)">Layla Abdulla</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;894590248577794080&#39;)">
+i like how they visual ERC721 and ERC1155                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/711974385514315847/67003ce9edfec555c21839bcf6c11298.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="cooganb#8742" data-user-id="711974385514315847" style="color: rgb(206,3,240)">Coogan | NO MetaMask DMs</span>
+
+
+        <span class="chatlog__timestamp">04-Oct-21 11:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="894605312592592936" id="message-894605312592592936" title="Message sent: 04-Oct-21 11:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">This is great! will share in the contract template workshop!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/395352971098980360/3393ef8365e4dff45624094e74c9e892.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="dina#1244" data-user-id="395352971098980360" style="color: rgb(149,165,166)">dina</span>
+
+
+        <span class="chatlog__timestamp">06-Oct-21 05:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="895425191998521345" id="message-895425191998521345" title="Message sent: 06-Oct-21 05:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The best part is where the frontrunners get rekt <img loading="lazy" class="emoji " alt="👼" title="angel" src="https://twemoji.maxcdn.com/2/svg/1f47c.svg"> 
+
+<a href="https://medium.com/perpetual-protocol/everything-you-need-to-know-about-the-first-liquidity-bootstrapping-pool-lbp-60a61b368c82">https://medium.com/perpetual-protocol/everything-you-need-to-know-about-the-first-liquidity-bootstrapping-pool-lbp-60a61b368c82</a></span>
+
+                                <span class="chatlog__edited-timestamp" title="06-Oct-21 05:41 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://medium.com/perpetual-protocol/everything-you-need-to-know-about-the-first-liquidity-bootstrapping-pool-lbp-60a61b368c82">
+                                                        <div class="markdown preserve-whitespace">Everything you need to know about the first liquidity bootstrapping...</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace">After a nerve-racking 20,850 blocks (around three days), the first-ever liquidity bootstrapping pool (LBP) was finally concluded on…</div>
+                                            </div>
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="https://images-ext-1.discordapp.net/external/A1JLOJW6Lzu-Y8Vc9bgT-T8hhtpsDIYJsN0klY21CVE/https/miro.medium.com/max/1191/0%2Ao3WtUNtMnyQlMCpI">
+                                                <img class="chatlog__embed-thumbnail" src="https://images-ext-1.discordapp.net/external/A1JLOJW6Lzu-Y8Vc9bgT-T8hhtpsDIYJsN0klY21CVE/https/miro.medium.com/max/1191/0%2Ao3WtUNtMnyQlMCpI" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="sweat_smile">
+                                <img class="emoji emoji--small" alt="&#128517;" src="https://twemoji.maxcdn.com/2/svg/1f605.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction" title="angel">
+                                <img class="emoji emoji--small" alt="&#128124;" src="https://twemoji.maxcdn.com/2/svg/1f47c.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/543819223840063489/e21532c8ab9a8ef2bffe9f653989835c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="cybergirldinah#0964" data-user-id="543819223840063489" style="color: rgb(149,165,166)">cybergirldinah</span>
+
+
+        <span class="chatlog__timestamp">07-Oct-21 01:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="895730452277649509" id="message-895730452277649509" title="Message sent: 07-Oct-21 01:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">There&#39;s an awesome Developer Dao started by Nader Dabit. Info on how to join is in this thread - you have to mint one of the 8000 free NFTs to join. Dabit will send a free one to anyone who can&#39;t afford gas <a href="https://twitter.com/dabit3/status/1445151370269626377?s=20">https://twitter.com/dabit3/status/1445151370269626377?s=20</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(29,161,242,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+                                                    <img class="chatlog__embed-author-icon" src="https://images-ext-2.discordapp.net/external/pYQ_20NlwzCOpOGZgWxv2N4ASO_Ri1bJ8qxOp8WJAMw/https/pbs.twimg.com/profile_images/1437064802480926723/DJ-f4xL5_bigger.jpg" alt="Author icon" loading="lazy" onerror="this.style.visibility='hidden'">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://twitter.com/dabit3">nader dabit | sha.eth (@dabit3)</a>
+                                                    </span>
+                                            </div>
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace">The @developer_dao is a collective of over 1,000 developers from all around the world passionate about education, public goods, &amp; pushing the web forward.
+
+We are working on collaborations with multiple web3 projects &amp; DAOs in the education, open source, &amp; content creation space.</div>
+                                            </div>
+
+                                            <div class="chatlog__embed-fields">
+                                                    <div class="chatlog__embed-field chatlog__embed-field--inline">
+                                                            <div class="chatlog__embed-field-name">
+                                                                <div class="markdown preserve-whitespace">Likes</div>
+                                                            </div>
+
+                                                            <div class="chatlog__embed-field-value">
+                                                                <div class="markdown preserve-whitespace">278</div>
+                                                            </div>
+                                                    </div>
+                                            </div>
+                                    </div>
+
+                                </div>
+
+
+                                    <div class="chatlog__embed-footer">
+                                            <img class="chatlog__embed-footer-icon" src="https://images-ext-1.discordapp.net/external/bXJWV2Y_F3XSra_kEqIYXAAsI3m1meckfLhYuWzxIfI/https/abs.twimg.com/icons/apple-touch-icon-192x192.png" alt="Footer icon" loading="lazy">
+
+                                        <span class="chatlog__embed-footer-text">
+Twitter
+ • 
+04-Oct-21 06:18 PM                                        </span>
+                                    </div>
+                            </div>
+                        </div>
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="100">
+                                <img class="emoji emoji--small" alt="&#128175;" src="https://twemoji.maxcdn.com/2/svg/1f4af.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/543819223840063489/e21532c8ab9a8ef2bffe9f653989835c.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="cybergirldinah#0964" style="color: rgb(149,165,166)">cybergirldinah</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;895730452277649509&#39;)">
+There&#39;s an awesome Developer Dao started by Nader Dabit. Info on how to join is in this thread - you have to mint one of the 8000 free NFTs to join. Dabit will send a free one to anyone who can&#39;t afford gas <a href="https://twitter.com/dabit3/status/1445151370269626377?s=20">https://twitter.com/dabit3/status/1445151370269626377?s=20</a>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/711974385514315847/67003ce9edfec555c21839bcf6c11298.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="cooganb#8742" data-user-id="711974385514315847" style="color: rgb(206,3,240)">Coogan | NO MetaMask DMs</span>
+
+
+        <span class="chatlog__timestamp">07-Oct-21 03:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="895751728065048596" id="message-895751728065048596" title="Message sent: 07-Oct-21 03:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">this is so cool!! excited to ask him about it next week !!</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="raised_hands_tone4">
+                                <img class="emoji emoji--small" alt="&#128588;&#127998;" src="https://twemoji.maxcdn.com/2/svg/1f64c-1f3fe.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="895751759711076373" id="message-895751759711076373" title="Message sent: 07-Oct-21 03:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">thank you for sharing!</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="grin">
+                                <img class="emoji emoji--small" alt="&#128513;" src="https://twemoji.maxcdn.com/2/svg/1f601.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/797466626588672010/79fa41cae7c4f524552a009b1bdd8e6d.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Layla Abdulla#1267" data-user-id="797466626588672010" style="color: rgb(149,165,166)">Layla Abdulla</span>
+
+
+        <span class="chatlog__timestamp">07-Oct-21 06:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="895795922666147910" id="message-895795922666147910" title="Message sent: 07-Oct-21 06:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Best proverb i ever Heard, i can relate with this saying right now while learning with all of you in this Bootacmp<img loading="lazy" class="emoji " alt="🥰" title="smiling_face_with_3_hearts" src="https://twemoji.maxcdn.com/2/svg/1f970.svg"></span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/880098814122405918/895795920703201310/unknown.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/880098814122405918/895795920703201310/unknown.png" alt="Image attachment" title="Image: unknown.png (24.03 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="100">
+                                <img class="emoji emoji--small" alt="&#128175;" src="https://twemoji.maxcdn.com/2/svg/1f4af.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">9</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/162234033516969985/934055812859856cd87c3c397ccb56bd.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sama#2948" data-user-id="162234033516969985" style="color: rgb(149,165,166)">Sama</span>
+
+
+        <span class="chatlog__timestamp">17-Oct-21 08:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="899279279098060820" id="message-899279279098060820" title="Message sent: 17-Oct-21 08:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">anyone managed to download those slides , they require access permission now</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/880098814122405918/899279275990069248/unknown.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/880098814122405918/899279275990069248/unknown.png" alt="Image attachment" title="Image: unknown.png (19.68 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 32 message(s)</div>
+</div>
+
+</body>
+
+</html>
